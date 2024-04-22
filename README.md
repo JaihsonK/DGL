@@ -173,4 +173,4 @@ The final image is compiled from all the layers. The layers are stacked "on top"
 
 ## Definitions
 
-[1]: A pixmap is an array of pixel data that represents an image. Each element in the array tells the colour of the corresponding pixel. To create your own sprites, see the project [Pixdraw](https://github.com/JaihsonK/pixdraw)
+[1]: A pixmap is an array of pixel data that represents an image. Each element in the array tells the colour of the corresponding pixel. To create your own pixmaps for use with DGL, see the project [Pixdraw](https://github.com/JaihsonK/pixdraw)
