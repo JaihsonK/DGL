@@ -47,7 +47,7 @@ To install make and gcc:
 
 #### Windows
 
-DGL is not currently available on Windows. Please contact us to help port to project to Windows!
+DGL is not currently available on Windows. Please contact us to help port the project to Windows!
 
 ## Install
 
