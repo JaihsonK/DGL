@@ -1,27 +1,7 @@
 #ifndef PIXMAP_H
 #define PIXMAP_H
 
-#include "raylib.h"
-#include "../render/render.h"
-
-enum shape_types
-{
-    NOTHING,
-    RECT,
-    CIRCLE,
-    ELLIPSE,
-    EQUILATERAL, //triangle
-    SC_RECT, //special case rect
-    SC_CIRCLE, //special case circle
-    SCATTER, //scattered pixels
-    SC_SCATTER
-};
-union shape_info
-{
-    Vector2 v2;
-    Vector3 v3;
-    Vector4 v4;
-};
+#include "../definitions.h"
 
 /**
  * @brief generate a pixel map (Color array) that represents an image

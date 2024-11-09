@@ -1,10 +1,9 @@
-#include "raylib.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "definitions.h"
 #include "pthread.h"
-#include "comp.h"
 #include "render/render.h"
 #include "sprite/sprite.h"
 

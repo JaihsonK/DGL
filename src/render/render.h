@@ -1,64 +1,9 @@
 #ifndef RENDER_H
 #define RENDER_H
 
-#include "raylib.h"
-#include "../comp.h"
+#include "../definitions.h"
 #include <stdbool.h>
 
-// maximum 10 layers of cache
-#define MAX_LAYERS 10
-#define MAX_SPRITES 50
-
-#define sprite struct _sprite
-
-typedef struct text
-{
-    char *text;
-    int fontsize;
-    int x;
-    int y;
-    Color colour;
-} text;
-
-#define IMAGE 0
-#define TEXT 1
-struct _sprite
-{
-    toggle image_text;
-
-    union
-    {
-        Color *pixmap;
-        text *text;
-    };
-
-    int width;
-    int height;
-    int x;
-    int y;
-
-    int rotation; // in degrees
-
-    bool skip;
-
-    int current_level;
-    int current_layer;
-};
-
-typedef struct
-{
-    sprite *objects[MAX_SPRITES];
-    Color *cache;
-    bool changed;
-    bool in_use;
-} layer;
-
-struct screen
-{
-    bool pause_render;
-    bool rw;
-    Color *cache;
-};
 
 #ifndef RENDER_C
 

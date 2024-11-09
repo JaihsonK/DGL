@@ -39,9 +39,6 @@
 #define shinf3(_x, _y, _z) (union shape_info){.v3 = {.x = _x, .y = _y, .z = _z}}
 #define shinf4(_w, _x, _y, _z) (union shape_info){.v4 = {.w = _w, .x = _x, .y = _y, .z = _z}}
 
-//generate_final_image aliases
-#define genfimage(changedonly) generate_final_image(changedonly)
-
 #define toggle int
 
 //re: toggle in struct sprite
@@ -172,48 +169,38 @@ extern bool has_collided(sprite *sp, int lid);
 extern sprite **all_collided(sprite *sp, int lid);
 
 /**
- * @brief clear layer's cache and object pointer array
+ * @brief clear layer's object pointer array
  * @note will not free sprite data
  * @param id layer ID
-*/
+ */
 extern void reset_layer(int id);
 
 /**
- * @brief clears layer cache and object pointer array for all layers marked "in use"
+ * @brief clears layer object pointer array for all layers marked "in use"
  * @return how many layers have been cleared
  * @note it's easy to reset all layers except ones you want to keep! Simply turn off the "in use" flag before calling this function
-*/
+ */
 extern int reset_all_layers();
 
 /**
- * @brief render a layer's sprites to layer cache
- * @note changes will not be visible on screen until all layers have been compiled into the final image and that has been drawn to screen
- * @param id layer's ID 
-*/
+ * @brief render a layer's sprites to screen cache
+ * @note changes will not be visable on screen until all layers have been compiled into the final image and that has been drawn to screen
+ * @param id layer's ID
+ */
 extern void render_layer(int id);
 
 /**
- * @brief render all layers to their respective caches
+ * @brief render all layers to screen cache
  * @param changedonly if true, function only renders layers with the "changed" flag turned on
- * @note this does NOT compile layers into the final image
  * @returns number of layers rendered
-*/
+ */
 extern int render_all_layers(bool changedonly);
 
 /**
- * @brief compile the render cache from each layer into the final image cache in screen_dat.cache
- * @note after calling this function, screen_dat.cache will have the final image to be drawn to the screen
- * @note this function will only compile from layers marked as "in use"
-*/
+ * @brief compiles all sprites to the final image cache
+ * @note This function DOES render layers
+ */
 extern void compile();
-
-/**
- * @brief Generate final image by rendering all layers and then compiling them to screen_dat.cache
- * @note equivalent to calling render_all_layers() and compile()
- * @param changedonly if true, only (re)render layers with the "changed" flag turned on
- * @return number of layers rendered
-*/
-extern int generate_final_image(bool changedonly);
 
 /**
  * @brief add a sprite to the layer at the first available level

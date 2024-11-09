@@ -1,6 +1,5 @@
 #include "sprite.h"
 #include "../render/render.h"
-#include "raylib.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
