@@ -104,22 +104,17 @@ void render_layer(int id)
             continue;
         }
 
-        // NOTE contrary to original dodge designs, image sprites do not require a backup because each sprite is rerendered whenever a layer is rendered.
-
-        // draw to screen cache
-
-        
         for (int x = 0; x < sp->width; x++)
             for (int y = 0; y < sp->height; y++)
             {
-                register unsigned x_pos = (sp->x + ((x * cos(sp->rotation DEG2RAD)) - (y * sin(sp->rotation DEG2RAD)))), y_pos = (sp->y + ((y * cos(sp->rotation DEG2RAD)) + (x * sin(sp->rotation DEG2RAD))));
+                register unsigned x_pos = (sp->x + ((x * cos(sp->rotation DEG2RAD) - y * sin(sp->rotation DEG2RAD)) * (sp->negate_x ? -1 : 1))), y_pos = (sp->y + ((y * cos(sp->rotation DEG2RAD) + x * sin(sp->rotation DEG2RAD)) * (sp->negate_y ? -1 : 1)));
                 //register unsigned x_pos = x + sp->x, y_pos = y + sp->y;
                 if ((y_pos < 0) || (x_pos < 0) || (y_pos >= windowHeight) || (x_pos >= windowWidth))
                     continue;
                 else if (colour_compare(BLANK, sp->pixmap[(x + (y * sp->width)) % (sp->height * sp->width)]))
                     continue;
                 else
-                    screen_dat.cache[x_pos + (y_pos * windowWidth)] = sp->pixmap[x + (y * sp->width)];
+                    screen_dat.cache[x_pos  + (y_pos * windowWidth)] = sp->pixmap[x + (y * sp->width)];
             }
     }
 }

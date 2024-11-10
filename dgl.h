@@ -73,10 +73,8 @@ typedef struct text
     Color colour;
 } text;
 
-typedef struct
+typedef struct 
 {
-    toggle image_text;
-
     union
     {
         Color *pixmap;
@@ -88,9 +86,15 @@ typedef struct
     int x;
     int y;
 
-    int rotation;
+    int rotation; // in degrees
 
-    bool skip;
+    struct 
+    {
+        char skip : 1;
+        char image_text : 1;
+        char negate_x : 1;
+        char negate_y : 1;
+    };
 
     int current_level;
     int current_layer;

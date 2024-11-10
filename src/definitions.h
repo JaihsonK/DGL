@@ -7,7 +7,10 @@
 
 #define colour_compare(x, y) (((x).r == (y).r) && ((x).g == (y).g) && ((x).b == (y).b) && ((x).a == (y).a))
 
-#define toggle int
+#define absolute(x) (x < 0 ? -x : x)
+
+#define match_sign(x, y) (x < 0 ? -y : y)
+
 extern int windowWidth, windowHeight;
 
 #define MAX_LAYERS 10
@@ -28,8 +31,6 @@ typedef struct text
 #define TEXT 1
 struct _sprite
 {
-    toggle image_text;
-
     union
     {
         Color *pixmap;
@@ -43,7 +44,13 @@ struct _sprite
 
     int rotation; // in degrees
 
-    bool skip;
+    struct 
+    {
+        char skip : 1;
+        char image_text : 1;
+        char negate_x : 1;
+        char negate_y : 1;
+    };
 
     int current_level;
     int current_layer;
