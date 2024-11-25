@@ -27,6 +27,7 @@ typedef struct text
     Color colour;
 } text;
 
+struct _entity;
 #define IMAGE 0
 #define TEXT 1
 struct _sprite
@@ -54,7 +55,21 @@ struct _sprite
 
     int current_level;
     int current_layer;
+    struct _entity *ent;
 };
+
+struct _entity
+{
+    int x;
+    int y;
+    bool entity_collision;
+    struct
+    {
+        sprite *sp;
+        char collision:1;
+    }objects[MAX_SPRITES];
+};
+#define entity struct _entity
 
 typedef struct
 {

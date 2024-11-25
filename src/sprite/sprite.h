@@ -3,6 +3,8 @@
 
 #include "../definitions.h"
 
+#define origin_x(sp) (sp->x + (sp->ent ? sp->ent->x : 0))
+#define origin_y(sp) (sp->y + (sp->ent ? sp->ent->y : 0))
 /**
  * @brief generate a pixel map (Color array) that represents an image
  * @param shape_type refer to enum shape_types
@@ -47,4 +49,18 @@ int update_collision(sprite *sp, int lid);
  * @returns false if they haven't
 */
 bool check_collision(sprite *obj1, sprite *obj2);
+
+/**
+ * @brief add a sprite to an entity
+ * @returns index into entity.objects, or -1 if there was no room
+ */
+int add_sprite_to_entity(sprite *sp, entity *ent);
+
+/**
+ * @brief update the collision flags for an entity
+ * @param ent entity to update collisions for
+ * @param lid layer id to test collision against
+ */
+void ent_update_collision(entity *ent, int lid);
+
 #endif

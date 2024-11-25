@@ -32,7 +32,7 @@ Pointer to already allocated memory. It is assumed this memory is large enough t
 
 ### shinf
 
-DGL provides the *shinf* macros to simplify the proess of passing a `union shape_info` to `pixmap_generate`.
+DGL provides the *shinf* macros to simplify the purpose of passing a `union shape_info` to `pixmap_generate` with ease.
 
 - `shinf(_x, _y)` passes the *x* and *y* values to `pixmap_generate` through v2.
 - `shinf3(_x, _y, _z)` passes the *x*, *y*, and *z* values to `pixmap_generate` through v3.

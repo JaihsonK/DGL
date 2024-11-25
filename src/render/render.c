@@ -82,7 +82,7 @@ int reset_all_layers()
 
 /**
  * @brief render a layer's sprites to screen cache
- * @note changes will not be visable on screen until all layers have been compiled into the final image and that has been drawn to screen
+ * @note changes will not be visible on screen until all layers have been compiled into the final image and that has been drawn to screen
  * @param id layer's ID
  */
 void render_layer(int id)
@@ -104,11 +104,11 @@ void render_layer(int id)
             continue;
         }
 
+        int origin_x = sp->x + (sp->ent ? sp->ent->x : 0), origin_y = sp->y + (sp->ent ? sp->ent->y : 0);
         for (int x = 0; x < sp->width; x++)
             for (int y = 0; y < sp->height; y++)
             {
-                register unsigned x_pos = (sp->x + ((x * cos(sp->rotation DEG2RAD) - y * sin(sp->rotation DEG2RAD)) * (sp->negate_x ? -1 : 1))), y_pos = (sp->y + ((y * cos(sp->rotation DEG2RAD) + x * sin(sp->rotation DEG2RAD)) * (sp->negate_y ? -1 : 1)));
-                //register unsigned x_pos = x + sp->x, y_pos = y + sp->y;
+                register unsigned x_pos = (origin_x + ((x * cos(sp->rotation DEG2RAD) - y * sin(sp->rotation DEG2RAD)) * (sp->negate_x ? -1 : 1))), y_pos = (origin_y + ((y * cos(sp->rotation DEG2RAD) + x * sin(sp->rotation DEG2RAD)) * (sp->negate_y ? -1 : 1)));
                 if ((y_pos < 0) || (x_pos < 0) || (y_pos >= windowHeight) || (x_pos >= windowWidth))
                     continue;
                 else if (colour_compare(BLANK, sp->pixmap[(x + (y * sp->width)) % (sp->height * sp->width)]))

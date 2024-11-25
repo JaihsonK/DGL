@@ -21,8 +21,7 @@ If you write a game using DGL, please send a screenshot and tell us about it! Th
 
 ### contact
 
-- Email us at [serpaeos.devers@gmail.com](mailto:serpaeos.devers@gmail.com)
-- Check out my [Fiverr](https://www.fiverr.com/s/qpkPr9) and [LinkedIn](www.linkedin.com/in/jaihsonkresak) pages
+- Email us at [jaihsonk@gmail.com](mailto:jaihsonk@gmail.com)
 - [Buy me a Pizza :)](https://www.buymeacoffee.com/serpaeosdel)
 
 ## Set-up
@@ -47,17 +46,11 @@ To install make and gcc:
 
 #### Windows
 
-DGL is not currently available on Windows. Please contact us to help port to project to Windows!
+DGL is not currently available on Windows. Please contact us to help port the project to Windows!
 
 ## Install
 
-To build and install DGL, simply run
-
-```sh
-make
-```
-
-If you wish to update DGL, download the new source code and run
+To build and install, or update DGL, download the source code and simply run
 
 ```sh
 make
@@ -149,7 +142,7 @@ For more information, see the [dgl.h](./dgl.h) header file, as well as the [prog
 
 ## How does DGL work?
 
-DGL works by organizing sprites (or objects) into levels and layers, rendering everything into the *final image* and displaying this final image to to screen.
+DGL works by organizing sprites and entities (groups of sprites that collectively make a single object) into layers, rendering everything into the *final image* and displaying this final image to to screen.
 
 ### Sprites
 
@@ -157,7 +150,7 @@ Sprites are objects that are seen on screen. In the context of the DGL, everythi
 
 ### Layers and Levels
 
-Layers can be thought of as 2D planes on which sprites can exist and through which they can interact.
+Layers can be thought of as 2D planes on which sprites can interact.
 
 Layers provide a good way to organize sprites. The developer can test for collision with only a certain group of sprites.
 
@@ -165,7 +158,7 @@ When DGL renders a layer, it puts the first sprite in the layer on the bottom an
 
 ### Final image
 
-After all layers are rendered to their respective caches, they are compiled into the *final image*. The final image can be thought of as the "ultimate layer." The final image is what is drawn to the screen for the user to see.
+All layers  are compiled into the *final image*. The final image is what is drawn to the screen for the user to see.
 
 The final image is compiled from all the layers. The layers are stacked "on top" of each other in a similar manner as levels are stacked in a layer; sprites on layer 0, for example, appear to be *below* sprites on layer 1 should they be drawn in the same location.
 

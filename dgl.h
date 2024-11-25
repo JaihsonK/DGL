@@ -22,11 +22,11 @@
  * DEFINITIONS *
  ***************/
 
-#define DGL_version "2024.4.1 (Linux)"
+#define DGL_version "2024.11.1"
 
 //compatibility list
 #define DGL_linux
-#define DGL_24_04_01
+#define DGL_24_11_01
 
 #define MAX_LAYERS 10
 #define MAX_SPRITES 50
@@ -73,7 +73,9 @@ typedef struct text
     Color colour;
 } text;
 
-typedef struct 
+struct _entity;
+
+typedef struct
 {
     union
     {
@@ -98,7 +100,21 @@ typedef struct
 
     int current_level;
     int current_layer;
+    struct _entity *ent;
 }sprite;
+
+struct _entity
+{
+    int x;
+    int y;
+    bool entity_collision;
+    struct
+    {
+        sprite *sp;
+        char collision:1;
+    }objects[MAX_SPRITES];
+};
+typedef struct _entity entity;
 
 typedef struct
 {
@@ -278,6 +294,19 @@ extern int find_sprite(sprite *sp, int layer);
  * @returns `-2` failure.
 */
 extern int move_sprite(int f_level, int f_layer, int t_level, int t_layer);
+
+/**
+ * @brief add a sprite to an entity
+ * @returns index into entity.objects, or -1 if there was no room
+ */
+extern int add_sprite_to_entity(sprite *sp, entity *ent);
+
+/**
+ * @brief update the collision flags for an entity
+ * @param ent entity to update collisions for
+ * @param lid layer id to test collision against
+ */
+extern void ent_update_collision(entity *ent, int lid);
 
 /**
  * @brief Open DIL file, include used files, and return the address of the entire program.

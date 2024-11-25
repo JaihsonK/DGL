@@ -4,13 +4,11 @@ The following is a tutorial to help us familiarize ourselves with DGL. Please re
 
 ## Compiling
 
-Compiling a DGL program is done the same way you would compile your Raylib programs. Ther only difference is that instead of using the `raylib` library file you would use the `DGL` library file. For example, to compile a DGL program on Linux:
+Compiling a DGL program is done the same way you would compile your Raylib programs. The only difference is that instead of using the `raylib` library file you would use the `DGL` library file. For example, to compile a DGL program on Linux:
 
 ```sh
 cc source.c -lDGL -lGL -lm -lpthread -ldl -lrt -lX11
 ```
-
-Of course, flags such as `-g`, `-Wall`, `-o`, etc., can be added.
 
 ## Bare Bones program
 
@@ -33,7 +31,7 @@ int main()
 
 #### terminal output:
 
-> Dodge Graphics Library version 2024.4.1 (Linux) (c) 2024 Jaihson Kresak
+> Dodge Graphics Library version < DGL version > (Linux) (c) 2024 Jaihson Kresak
 >
 > a 2D graphics library based on Raylib by Ramon Santamaria.
 >
@@ -41,11 +39,11 @@ int main()
 >
 > . . .
 
-The `stdio.h` header file is optional. Error messages are typically outputted through the terminal, not the window. Include `stdio.h` if you will report errors and warnings to the user.
+The `stdio.h` header file is optional. Error messages are typically outputted through the terminal, not the graphical window. Include `stdio.h` if you will report errors and warnings to the user.
 
 The function `start` initiates DGL, starts the renderer, and outputs a small message to terminal.
 
-When DGL starts the renderer in initially in a paused state. The line
+DGL starts the renderer initially in a paused state. The line
 
 ``` c
 screen_dat.pause_render = false;
@@ -129,17 +127,6 @@ int main()
     screen_dat.pause_render = false;
     while(running)
     {
-        //method 1
-        render_all_layers(true);
-        compile();
-        
-        //method 2
-        generate_final_image(true);
-
-        //method 3
-        render_layer(0);
-        render_layer(1);
-        render_layer(2);
         compile();
     }
     exit(0);
@@ -150,19 +137,11 @@ int main()
 
 ![rendered output](./media/barebones2-1.png)
 
-As seen in the source, there are three methods of rendering the layers and compiling (see [README.md > How does DGL work?](../README.md#how-does-dgl-work)).
-
-1. The `render_all_layers` takes one argument, *changedonly*. If *changedonly* is set to true, the function will render only those layers that have changed since the last render. This does *not* reflect a change within a sprite. If *changedonly* is set to false, the function will render every layer.  This function must be proceeded by `compile` for any visable effect to occure.
-
-2. The `generate_final_image` function (and its alias `genfimage`) is equivalent to a call to `render_all_layers` and `compile`. It takes the parameter for `render_all_layers` and returns its return value.
-
-3. The `render_layer` function only renders one layer. A call or series of calls to this function must be proceeded by a call to `compile`.
-
-The third method is generally preferred when the developer is *not* using all the layers, as it is faster to render just the layers in use than all of them.
+As seen in the source, rendering layers and compiling them into the final image is simply done using the `compile()` function. (see [README.md > How does DGL work?](../README.md#how-does-dgl-work)).
 
 ## Text
 
-Text is also a sprite. To display text, **do not** use Raylib's `DrawText` functions. To draw text:
+Text is also a sprite. To display text, ***do not*** use Raylib's `DrawText` functions (this will break DGL). To draw text:
 
 1. Initiate an instance of the `text` structure and the `sprite` structure. Set the values of the `text` appropriately.
 2. Set the sprite's `image_text` flag to `TEXT` and the `text` value to the address of the text structure.
@@ -194,7 +173,7 @@ int main()
     screen_dat.pause_render = false;
     while(running)
     {
-        genfimage(false);
+        compile();
         
         if(IsKeyDown(KEY_SPACE)) // wait for user to press space
         {
@@ -209,12 +188,20 @@ int main()
 }
 ```
 
+## Entities
+
+Entities are groups of sprites that collectively make a single object on the screen. The move in unison, and a collision to one sprite in an entity will result in a collision flag for the entire entity being set.
+
+This functionality is useful if you wish to create a complex object made of multiple shapes, such as a person. Collision to your person's leg would logically result in collision with the entire entity being set. Also, it would make sense for the person's entire body to move in unison.
+
+
+
 ## Going forward
 
-The overused expression is still true: The best way to learn to code is by reading code and doing it yourself.
+The best way to learn to code is by reading code and doing it yourself.
 
 The dgl.h header file has detailed comments the explain what each function does.
 
 Check out the sample programs too to learn more!
 
-Feel free to [contact us](../README.md#contact) if you'd like more info!
+Please feel free to [contact us](../README.md#contact) if you'd like more info!
