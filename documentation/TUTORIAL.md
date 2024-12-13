@@ -151,6 +151,7 @@ For example:
 
 ```c
 #include <dgl.h>
+#include <stdlib.h>
 int main()
 {
     ...

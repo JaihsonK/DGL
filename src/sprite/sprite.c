@@ -97,14 +97,14 @@ Color *pixmap_generate(int shape_type, union shape_info dat, Color colour, Color
         if (dat.v2.y >= dat.v2.x)
         {
             // upright triangle
-            vertices[0].y = 0;            /*top vertex  +          */
-            vertices[0].x = dat.v2.x / 2; /*            / \         */
+            vertices[0].y = 0;            /*top vertex*/
+            vertices[0].x = dat.v2.x / 2;
 
-            vertices[1].y = dat.v2.y - 1; /*bottom left vertex  /   */
-            vertices[1].x = 0;            /*                    +--  */
+            vertices[1].y = dat.v2.y - 1; /*bottom left vertex*/
+            vertices[1].x = 0;
 
-            vertices[2].y = dat.v2.y - 1; /*bottom right vertex   \   */
-            vertices[2].x = dat.v2.x - 1; /*                      --+  */
+            vertices[2].y = dat.v2.y - 1; /*bottom right vertex*/
+            vertices[2].x = dat.v2.x - 1; 
 
             m = (vertices[1].y - vertices[0].y) / (vertices[1].x - vertices[0].x); // left arm slope
 

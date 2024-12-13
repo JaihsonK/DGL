@@ -1,7 +1,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
-#define DGL_version "2024.8.1 (Linux dev3)"
+#define DGL_version "2024.11.1 (Linux dev3)"
 
 #include "raylib.h"
 
@@ -97,6 +97,7 @@ enum shape_types
     CIRCLE,
     ELLIPSE,
     EQUILATERAL, //triangle
+    CURVE,
     SC_RECT, //special case rect
     SC_CIRCLE, //special case circle
     SCATTER, //scattered pixels
