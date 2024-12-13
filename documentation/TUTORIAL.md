@@ -195,7 +195,15 @@ Entities are groups of sprites that collectively make a single object on the scr
 
 This functionality is useful if you wish to create a complex object made of multiple shapes, such as a person. Collision to your person's leg would logically result in collision with the entire entity being set. Also, it would make sense for the person's entire body to move in unison.
 
+```c
+entity person;
 
+sprite head, hat, eyeL, eyeR, smile;
+
+...
+
+add
+```
 
 ## Going forward
 
