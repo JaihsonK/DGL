@@ -296,10 +296,11 @@ extern int find_sprite(sprite *sp, int layer);
 extern int move_sprite(int f_level, int f_layer, int t_level, int t_layer);
 
 /**
- * @brief add a sprite to an entity
- * @returns index into entity.objects, or -1 if there was no room
+ * @brief add a sprites to an entity
+ * @returns 0 for success
+ * @note Append a NULL pointer at the end of your list of sprites
  */
-extern int add_sprite_to_entity(sprite *sp, entity *ent);
+extern int add_sprites_to_entity(entity *ent, ...);
 
 /**
  * @brief update the collision flags for an entity

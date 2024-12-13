@@ -2,6 +2,7 @@
 #include "../render/render.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <memory.h>
 #include <math.h>
 #include "../math.h"
@@ -226,25 +227,32 @@ int find_sprite_in_entity(sprite *sp, entity *ent)
 }
 
 /**
- * @brief add a sprite to an entity
- * @returns index into entity.objects, or -1 if there was no room
+ * @brief add a sprites to an entity
+ * @returns 0 for success
+ * @note Append a NULL pointer at the end of your list of sprites
  */
-int add_sprite_to_entity(sprite *sp, entity *ent)
+int add_sprites_to_entity(entity *ent, ...)
 {
-    if (!ent || !sp)
-        return -2;
-    int res;
-    for (res = 0; res < MAX_SPRITES; res++)
+    va_list args;
+
+    if (!ent)
+        return -1;
+    
+    va_start(args, ent);
+    
+    for (int i = 0; i < MAX_SPRITES; i++)
     {
-        if (!ent->objects[res].sp)
+        if (!ent->objects[i].sp)
         {
-            ent->objects[res].sp = sp;
+            sprite *sp = va_arg(args, sprite *);
+            if(!sp) break;
+
+            ent->objects[i].sp = sp;
             sp->ent = ent;
-            break;
         }
     }
-    if(res == MAX_SPRITES) res = -1;
-    return res;
+    va_end(args);
+    return 0;
 }
 
 /**
