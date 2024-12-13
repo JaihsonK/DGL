@@ -1,7 +1,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
-#define DGL_version "2024.11.1 (Linux dev3)"
+#define DGL_version "2024.12.1 (Linux)"
 
 #include "raylib.h"
 

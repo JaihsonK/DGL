@@ -22,11 +22,11 @@
  * DEFINITIONS *
  ***************/
 
-#define DGL_version "2024.11.1"
+#define DGL_version "2024.12.1"
 
 //compatibility list
 #define DGL_linux
-#define DGL_24_11_01
+#define DGL_24_12_01
 
 #define MAX_LAYERS 10
 #define MAX_SPRITES 50
